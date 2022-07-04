@@ -6,6 +6,7 @@ subweb 是基于 subconverter 订阅转换的前端项目,方便用户快速生�
 
 *GitHub [stilleshan/subweb](https://github.com/stilleshan/subweb)  
 Docker [stilleshan/subweb](https://hub.docker.com/r/stilleshan/subweb)*
+> *docker image support for X86 and ARM*
 
 ## 示例
 [https://sub.ops.ci](https://sub.ops.ci)  
