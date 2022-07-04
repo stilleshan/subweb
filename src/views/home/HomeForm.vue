@@ -108,7 +108,7 @@
         >
           <ul class="actions">
             <li>
-              <input type="button" value="生成链接" @click="checkAll()" />
+              <input type="button" value="订阅转换" @click="checkAll()" />
             </li>
             <!-- <li><input type="reset" value="重置内容" class="alt" /></li> -->
             <li>
@@ -125,9 +125,7 @@
           <input
             type="text"
             readOnly="true"
-            :placeholder="
-              this.apiUrl + '/sub?target=' + this.targetType + '&url='
-            "
+            placeholder="点击订阅转换获取链接"
             v-model.trim="returnUrl"
           />
         </div>
