@@ -16,24 +16,25 @@ Docker [stilleshan/subweb](https://hub.docker.com/r/stilleshan/subweb)*
 ### docker 本地版
 *适用于本机部署使用*
 ```shell
-docker run -d --name subweb --restart always -p 18080:80 stilleshan/subweb
+docker run -d --name subweb --restart always \
+  -p 18080:80 \
+  stilleshan/subweb
 ```
 
 访问 `http://127.0.0.1:18080`
 
-### docker 在线版 (自定义后端 API)
-*适用于服务器部署,配合域名反代使用*
-
-**修改自定义 subconverter API 地址需要自行编译构建镜像. ** 
+### docker 自定义后端 API 地址
+修改`API_URL`环境变量为你的后端 API 地址
 ```shell
-git clone https://github.com/stilleshan/subweb
-cd subweb
-# 修改 .env.productionn 中 VUE_APP_BASE_API_URL 为你 subconverter 后端 API 地址.
-docker build -t subweb .
-# 构建镜像
-docker run -d --name subweb --restart always -p 18080:80 subweb
-# 启动容器
+docker run -d --name subweb --restart always \
+  -p 18080:80 \
+  -e API_URL=https://sub.ops.ci \
+  stilleshan/subweb
 ```
+
+访问 `http://127.0.0.1:18080`  
+> *推荐使用 nginx 反向代理部署*
+
 
 ## 链接
 - [GitHub - stilleshan/subweb](https://github.com/stilleshan/subweb)
