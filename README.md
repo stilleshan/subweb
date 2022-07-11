@@ -14,7 +14,7 @@ Docker [stilleshan/subweb](https://hub.docker.com/r/stilleshan/subweb)*
 
 ## 部署
 ### docker 本地版
-*适用于本机部署使用*
+*适用于本机快速部署使用*
 ```shell
 docker run -d --name subweb --restart always \
   -p 18080:80 \
@@ -23,11 +23,22 @@ docker run -d --name subweb --restart always \
 
 访问 `http://127.0.0.1:18080`
 
-### docker 自定义后端 API 地址
-修改`API_URL`环境变量为你的后端 API 地址
+### docker 自定义版
+自定义版可以挂载配置文件来修改`API 地址`,`站点名称`,`导航链接`.  
+参考以下命令,修改本地挂载路径,启动容器后会生成`config.js`配置文件,更改后刷新生效.
+
 ```shell
 docker run -d --name subweb --restart always \
   -p 18080:80 \
+  -v /PATH/subweb/conf:/usr/share/nginx/html/conf \
+  stilleshan/subweb
+```
+
+同时也可以不挂载目录,直接通过`-e`环境变量来修改`API 地址`和`站点名称`,但是无法修改`导航链接`.
+```shell
+docker run -d --name subweb --restart always \
+  -p 18080:80 \
+  -e SITE_NAME=subweb \
   -e API_URL=https://sub.ops.ci \
   stilleshan/subweb
 ```

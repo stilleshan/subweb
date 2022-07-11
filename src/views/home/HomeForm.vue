@@ -155,12 +155,12 @@ export default {
       isShowMoreConfig: false,
       urls: [],
       returnUrl: '',
-      apiUrl: process.env.VUE_APP_BASE_API_URL,
+      apiUrl: window.config.apiUrl,
       manualApiUrl: '',
       isManualApi: true,
       api: 'default',
       apis: [
-        { value: 'default', text: process.env.VUE_APP_BASE_API_URL },
+        { value: 'default', text: window.config.apiUrl },
         { value: 'manual', text: '自定义后端 API 地址' },
       ],
       inputs: {

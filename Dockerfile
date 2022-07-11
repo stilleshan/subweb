@@ -8,6 +8,6 @@ RUN npm run build
 
 FROM nginx:1.16-alpine
 COPY --from=build /app/dist /usr/share/nginx/html
-COPY start.sh /
+COPY . /app
 EXPOSE 80
-CMD [ "sh", "-c", "/start.sh" ]
+CMD [ "sh", "-c", "/app/start.sh" ]
