@@ -11,7 +11,7 @@
           ></textarea>
         </div>
         <div
-          class="col-4 col-4-mobilep list"
+          class="col-5 col-12-mobilep list"
           style="text-align: center; padding-top: 20px"
         >
           <select v-model="targetType" @change="selectTarget($event)">
@@ -25,7 +25,7 @@
           </select>
         </div>
         <div
-          class="col-4 col-4-mobilep list"
+          class="col-5 col-8-mobilep list"
           style="text-align: center; padding-top: 20px"
         >
           <select id="selectApi" v-model="api" @change="selectApi($event)">
@@ -35,13 +35,28 @@
           </select>
         </div>
         <div
-          class="col-4 col-4-mobilep"
+          class="col-2 col-4-mobilep"
+          style="text-align: center; padding-top: 20px"
+        >
+          <ul class="actions">
+            <li>
+              <input
+                type="button"
+                value="参数"
+                class="alt"
+                @click="showMoreConfig()"
+              />
+            </li>
+          </ul>
+        </div>
+        <div
+          v-show="isShowManualApiUrl"
+          class="col-12"
           style="text-align: center; padding-top: 20px"
         >
           <input
             v-model="manualApiUrl"
             type="text"
-            :disabled="isManualApi"
             placeholder="示例：https://sub.ops.ci"
           />
         </div>
@@ -50,7 +65,7 @@
           class="col-12"
           style="text-align: center; padding-top: 0px"
         >
-          <div class="col-12" style="text-align: center; padding-top: 30px">
+          <div class="col-12" style="text-align: center; padding-top: 20px">
             <input
               type="text"
               :placeholder="'Include：可选'"
@@ -88,47 +103,30 @@
           </div>
         </div>
         <div
-          class="col-6 col-6-mobilep"
+          class="col-10 col-8-mobilep"
           style="text-align: center; padding-top: 20px"
         >
-          <ul class="actions">
-            <li>
-              <input type="button" value="订阅转换" @click="checkAll()" />
-            </li>
-            <!-- <li><input type="reset" value="重置内容" class="alt" /></li> -->
-            <li>
-              <input
-                type="button"
-                value="可选参数"
-                class="alt"
-                @click="showMoreConfig()"
-              />
-            </li>
-          </ul>
-        </div>
-        <div class="col-10" style="text-align: center; padding-top: 20px">
           <input
             type="text"
             readOnly="true"
-            placeholder="点击订阅转换获取链接"
+            placeholder="点击转换订阅链接"
             v-model.trim="returnUrl"
           />
         </div>
         <div
-          class="col-2 col-2-mobilep"
+          class="col-2 col-4-mobilep"
           style="text-align: center; padding-top: 20px"
         >
           <ul class="actions">
             <li>
-              <input
-                type="button"
-                value="复制"
-                @click="toCopy(this.returnUrl, '订阅链接')"
-              />
+              <input type="button" value="转换" @click="getSubUrl()" />
             </li>
           </ul>
         </div>
-        <div class="col-10" style="text-align: center; padding-top: 20px">
+        <div
+          class="col-10 col-8-mobilep"
+          style="text-align: center; padding-top: 20px"
+        >
           <input
             type="text"
             readOnly="true"
@@ -137,7 +135,7 @@
           />
         </div>
         <div
-          class="col-2 col-2-mobilep"
+          class="col-2 col-4-mobilep"
           style="text-align: center; padding-top: 20px"
         >
           <ul class="actions">
@@ -192,7 +190,7 @@ export default {
       apiUrl: window.config.apiUrl,
       shortUrl: window.config.shortUrl,
       manualApiUrl: '',
-      isManualApi: true,
+      isShowManualApiUrl: false,
       api: 'default',
       apis: [
         { value: 'default', text: window.config.apiUrl },
@@ -236,23 +234,45 @@ export default {
         this.isShowMoreConfig = true;
       }
     },
+    showDialog(msg) {
+      this.dialogMessage = msg;
+      this.dialogVisible = true;
+    },
     resetDialog() {
       this.dialogVisible = false;
     },
     selectApi(event) {
       if (event.target.value == 'manual') {
-        this.isManualApi = false;
+        this.isShowManualApiUrl = true;
       } else {
-        this.isManualApi = true;
+        this.isShowManualApiUrl = false;
       }
     },
     selectTarget(event) {
       this.targetType = event.target.value;
     },
+    toCopy(url, title) {
+      if (!url) {
+        this.showDialog('复制失败 内容为空');
+      } else {
+        var copyInput = document.createElement('input');
+        copyInput.setAttribute('value', url);
+        document.body.appendChild(copyInput);
+        copyInput.select();
+        try {
+          var copyed = document.execCommand('copy');
+          if (copyed) {
+            document.body.removeChild(copyInput);
+            this.showDialog(title + ' 复制成功');
+          }
+        } catch {
+          this.showDialog('复制失败 请检查浏览器兼容');
+        }
+      }
+    },
     checkUrls() {
       if (this.inputs.inputValue == '') {
-        this.dialogMessage = '请填写正确的订阅地址';
-        this.dialogVisible = true;
+        this.showDialog('请填写正确的订阅地址');
         return false;
       } else {
         this.urls = this.inputs.inputValue;
@@ -265,8 +285,7 @@ export default {
       if (apiSelect.options[i].value == 'manual') {
         this.apiUrl = this.manualApiUrl;
         if (!utils.regexCheck(this.apiUrl)) {
-          this.dialogMessage = '请填写正确的 API 地址';
-          this.dialogVisible = true;
+          this.showDialog('请填写正确的 API 地址');
           return false;
         } else if (this.apiUrl.split('').slice(-1) == '/') {
           this.apiUrl = this.apiUrl.substr(0, this.apiUrl.length - 1);
@@ -293,54 +312,35 @@ export default {
         this.getFinalUrl();
       }
     },
-    toCopy(url, title) {
-      if (!url) {
-        this.dialogMessage = '内容为空,请先订阅转换.';
-        this.dialogVisible = true;
-      } else {
-        var copyInput = document.createElement('input');
-        copyInput.setAttribute('value', url);
-        document.body.appendChild(copyInput);
-        copyInput.select();
-        try {
-          var copyed = document.execCommand('copy');
-          if (copyed) {
-            document.body.removeChild(copyInput);
-            this.dialogMessage = title + '复制成功';
-            this.dialogVisible = true;
-          }
-        } catch {
-          this.dialogMessage = '复制失败，请检查浏览器兼容.';
-          this.dialogVisible = true;
-        }
+    getSubUrl() {
+      this.checkAll();
+      if (!this.returnUrl == '') {
+        this.toCopy(this.returnUrl, '订阅链接');
       }
     },
     getShortUrl() {
       if (this.returnUrl == '') {
-        this.dialogMessage = '内容为空,请先订阅转换.';
-        this.dialogVisible = true;
-      } else {
-        let data = new FormData();
-        data.append('longUrl', btoa(this.returnUrl));
-        request({
-          method: 'post',
-          url: this.shortUrl + '/short',
-          header: {
-            'Content-Type': 'application/form-data; charset=utf-8',
-          },
-          data: data,
-        })
-          .then((res) => {
-            if (res.data.Code === 1 && res.data.ShortUrl !== '') {
-              this.returnShortUrl = res.data.ShortUrl;
-              this.toCopy(res.data.ShortUrl, '短链接');
-            }
-          })
-          .catch(() => {
-            this.dialogMessage = '短链接生成失败';
-            this.dialogVisible = true;
-          });
+        this.checkAll();
       }
+      let data = new FormData();
+      data.append('longUrl', btoa(this.returnUrl));
+      request({
+        method: 'post',
+        url: this.shortUrl + '/short',
+        header: {
+          'Content-Type': 'application/form-data; charset=utf-8',
+        },
+        data: data,
+      })
+        .then((res) => {
+          if (res.data.Code === 1 && res.data.ShortUrl !== '') {
+            this.returnShortUrl = res.data.ShortUrl;
+            this.toCopy(res.data.ShortUrl, '短链接');
+          }
+        })
+        .catch(() => {
+          this.showDialog('短链接生成失败 请检查短链接服务是否可用');
+        });
     },
   },
 };
