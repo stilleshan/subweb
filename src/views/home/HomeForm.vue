@@ -120,7 +120,29 @@
         >
           <ul class="actions">
             <li>
-              <input type="button" value="复制" @click="toCopy()" />
+              <input
+                type="button"
+                value="复制"
+                @click="toCopy(this.returnUrl, '订阅链接')"
+              />
+            </li>
+          </ul>
+        </div>
+        <div class="col-10" style="text-align: center; padding-top: 20px">
+          <input
+            type="text"
+            readOnly="true"
+            placeholder="点击生成短链接"
+            v-model.trim="returnShortUrl"
+          />
+        </div>
+        <div
+          class="col-2 col-2-mobilep"
+          style="text-align: center; padding-top: 20px"
+        >
+          <ul class="actions">
+            <li>
+              <input type="button" value="短链" @click="getShortUrl()" />
             </li>
           </ul>
         </div>
@@ -135,6 +157,7 @@
 </template>
 
 <script>
+import { request } from 'network';
 import utils from './utils.js';
 import DialogLayOut from 'components/common/dialog/DialogLayOut.vue';
 export default {
@@ -165,7 +188,9 @@ export default {
       isShowMoreConfig: false,
       urls: [],
       returnUrl: '',
+      returnShortUrl: '',
       apiUrl: window.config.apiUrl,
+      shortUrl: window.config.shortUrl,
       manualApiUrl: '',
       isManualApi: true,
       api: 'default',
@@ -268,26 +293,53 @@ export default {
         this.getFinalUrl();
       }
     },
-    toCopy() {
-      if (!this.returnUrl) {
+    toCopy(url, title) {
+      if (!url) {
         this.dialogMessage = '内容为空,请先订阅转换.';
         this.dialogVisible = true;
       } else {
         var copyInput = document.createElement('input');
-        copyInput.setAttribute('value', this.returnUrl);
+        copyInput.setAttribute('value', url);
         document.body.appendChild(copyInput);
         copyInput.select();
         try {
           var copyed = document.execCommand('copy');
           if (copyed) {
             document.body.removeChild(copyInput);
-            this.dialogMessage = '复制成功';
+            this.dialogMessage = title + '复制成功';
             this.dialogVisible = true;
           }
         } catch {
           this.dialogMessage = '复制失败，请检查浏览器兼容.';
           this.dialogVisible = true;
         }
+      }
+    },
+    getShortUrl() {
+      if (this.returnUrl == '') {
+        this.dialogMessage = '内容为空,请先订阅转换.';
+        this.dialogVisible = true;
+      } else {
+        let data = new FormData();
+        data.append('longUrl', btoa(this.returnUrl));
+        request({
+          method: 'post',
+          url: this.shortUrl + '/short',
+          header: {
+            'Content-Type': 'application/form-data; charset=utf-8',
+          },
+          data: data,
+        })
+          .then((res) => {
+            if (res.data.Code === 1 && res.data.ShortUrl !== '') {
+              this.returnShortUrl = res.data.ShortUrl;
+              this.toCopy(res.data.ShortUrl, '短链接');
+            }
+          })
+          .catch(() => {
+            this.dialogMessage = '短链接生成失败';
+            this.dialogVisible = true;
+          });
       }
     },
   },
