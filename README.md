@@ -30,7 +30,7 @@ docker run -d --name subweb --restart always \
 ```shell
 docker run -d --name subweb --restart always \
   -p 18080:80 \
-  -v /PATH/subweb/conf:/usr/share/nginx/html/conf \
+  -v /PATH/subweb/public/conf:/usr/share/nginx/html/conf \
   stilleshan/subweb
 ```
 
