@@ -18,7 +18,7 @@
 </template>
 
 <script>
-// import { navBarItem } from './navBarItem';
+import { navBarItem } from './navBarItem';
 export default {
   name: 'NavBarMobile',
   data() {
@@ -27,7 +27,7 @@ export default {
     };
   },
   created() {
-    this.navBarItem = window.config.menuItem;
+    this.navBarItem = navBarItem;
     document.addEventListener('click', (e) => {
       if (this.$refs.showPanel) {
         let isSelf = this.$refs.showPanel.contains(e.target);

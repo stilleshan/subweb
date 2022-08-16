@@ -14,7 +14,7 @@
 </template>
 
 <script>
-// import { navBarItem } from './navBarItem';
+import { navBarItem } from './navBarItem';
 export default {
   name: 'NavBar',
   data() {
@@ -24,8 +24,8 @@ export default {
     };
   },
   created() {
-    this.navBarItem = window.config.menuItem;
-    this.siteName = window.config.siteName;
+    this.navBarItem = navBarItem;
+    this.siteName = process.env.VUE_APP_SITE_NAME;
   },
 };
 </script>

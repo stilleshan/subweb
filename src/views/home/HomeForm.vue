@@ -187,13 +187,13 @@ export default {
       urls: [],
       returnUrl: '',
       returnShortUrl: '',
-      apiUrl: window.config.apiUrl,
-      shortUrl: window.config.shortUrl,
+      apiUrl: process.env.VUE_APP_API_URL,
+      shortUrl: process.env.VUE_APP_SHORT_URL,
       manualApiUrl: '',
       isShowManualApiUrl: false,
       api: 'default',
       apis: [
-        { value: 'default', text: window.config.apiUrl },
+        { value: 'default', text: process.env.VUE_APP_API_URL },
         { value: 'manual', text: '自定义后端 API 地址' },
       ],
       inputs: {
