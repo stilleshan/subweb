@@ -35,8 +35,8 @@ docker run -d --name subweb --restart always \
   stilleshan/subweb
 ```
 
-同时也可以不挂载目录,直接通过`-e`环境变量来修改`API 地址`,`短链接地址`和`站点名称`,但是无法修改`导航链接`.
-`注意:以下域名请严格填写 http/https 协议,结尾不要 /`
+同时也可以不挂载目录,直接通过`-e`环境变量来修改`API 地址`,`短链接地址`和`站点名称`,但是无法修改`导航链接`.  
+`注意:以下域名请严格填写 http 或 https 协议,结尾不要 / 斜杠符号.`
 ```shell
 docker run -d --name subweb --restart always \
   -p 18080:80 \

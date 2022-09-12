@@ -147,22 +147,14 @@
       </div>
     </form>
   </div>
-  <DialogLayOut
-    :dialogVisible="dialogVisible"
-    @closed="resetDialog"
-    :message="dialogMessage"
-  ></DialogLayOut>
 </template>
 
 <script>
 import { request } from 'network';
 import utils from './utils.js';
-import DialogLayOut from 'components/common/dialog/DialogLayOut.vue';
+import dialogOut from 'components/common/dialog';
 export default {
   name: 'HomeForm',
-  components: {
-    DialogLayOut,
-  },
   setup() {
     const ENV = {
       DEFAULT_MORECONFIG: {
@@ -219,8 +211,6 @@ export default {
         { value: 'ssr', text: 'SSR' },
         { value: 'loon', text: 'Loon' },
       ],
-      dialogVisible: false,
-      dialogMessage: '',
     };
   },
   created() {
@@ -234,12 +224,8 @@ export default {
         this.isShowMoreConfig = true;
       }
     },
-    showDialog(msg) {
-      this.dialogMessage = msg;
-      this.dialogVisible = true;
-    },
-    resetDialog() {
-      this.dialogVisible = false;
+    showDialog(Msg) {
+      dialogOut(this, Msg);
     },
     selectApi(event) {
       if (event.target.value == 'manual') {
