@@ -5,11 +5,13 @@
       <header-view />
       <content-view />
       <footer-view />
+      <dialog-lay-out />
     </div>
   </body>
 </template>
 
 <script>
+import DialogLayOut from 'components/common/dialog/DialogLayOut.vue';
 import NavBarMobile from './components/header/NavBarMobile';
 import HeaderView from './HeaderView';
 import ContentView from './ContentView';
@@ -22,6 +24,7 @@ export default {
     HeaderView,
     ContentView,
     FooterView,
+    DialogLayOut,
   },
   data() {
     return {

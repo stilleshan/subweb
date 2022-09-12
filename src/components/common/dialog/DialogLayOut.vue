@@ -1,5 +1,5 @@
 <template>
-  <el-dialog v-model="dialogVisible" top="30vh" width="40%">
+  <el-dialog v-model="isShow" top="30vh" width="40%">
     <span>
       <p style="text-align: center">{{ message }}</p>
     </span>
@@ -15,15 +15,17 @@ export default {
   components: {
     ElDialog,
   },
-  props: {
-    dialogVisible: {
-      type: Boolean,
-      default: false,
-    },
-    message: {
-      type: String,
-      default: '这是一个封装好的弹窗组建',
-    },
+  data() {
+    return {
+      isShow: false,
+      message: '',
+    };
+  },
+  created() {
+    this.emitter.on('DialogLayOut', (DialogLayOut) => {
+      this.isShow = true;
+      this.message = DialogLayOut;
+    });
   },
 };
 </script>
