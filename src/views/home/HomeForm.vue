@@ -160,7 +160,7 @@ export default {
       DEFAULT_MORECONFIG: {
         include: '',
         exclude: '',
-        remoteconfig: '',
+        remoteconfig: process.env.VUE_APP_REMOTE_CONFIG || '',
         emoji: true,
         udp: true,
         sort: false,
