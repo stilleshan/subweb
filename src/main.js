@@ -1,10 +1,14 @@
 import { createApp } from 'vue';
 import App from './App.vue';
 import router from './router';
-import mitt from 'mitt';
+import store from './store';
+import DialogView from '@/components/dialog/DialogView.vue';
+import { showDialog, closeDialog } from 'components/dialog';
 
-const emitter = mitt();
 const app = createApp(App);
+app.component('DialogView', DialogView);
+app.use(router).use(store);
 
-app.use(router).mount('#app');
-app.config.globalProperties.emitter = emitter;
+app.config.globalProperties.$showDialog = showDialog;
+app.config.globalProperties.$closeDialog = closeDialog;
+app.mount('#app');

@@ -1,0 +1,274 @@
+.section-py {
+  padding: 6.25rem 0;
+}
+@media (max-width: 1199.98px) {
+  .section-py {
+    padding: 5rem 0;
+  }
+}
+@media (max-width: 767.98px) {
+  .section-py {
+    padding: 3rem 0;
+  }
+}
+
+.landing-hero {
+  border-radius: 0 0 3.5rem 3.5rem;
+  padding-top: 10.2rem;
+}
+.landing-hero::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+@media (min-width: 992px) {
+  .landing-hero .hero-text-box {
+    max-width: 34.375rem;
+    margin: 0 auto;
+  }
+}
+.landing-hero .hero-title {
+  background: linear-gradient(to right, #28c76f 0%, #5a4aff 47.92%, #ff3739 100%);
+  background-size: 200% auto;
+  color: #5d596c;
+  background-clip: text;
+  line-height: 1.2;
+  text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 2s ease-in-out infinite alternate;
+}
+.landing-hero .hero-sub-title {
+  line-height: 28px;
+}
+.landing-hero .landing-hero-btn .hero-btn-item {
+  inset-inline-start: -86%;
+  top: 80%;
+}
+.landing-hero .hero-animation-img {
+  margin-bottom: -32rem;
+}
+@media (max-width: 1199.98px) {
+  .landing-hero .hero-animation-img {
+    margin-bottom: -20rem;
+  }
+}
+@media (max-width: 575.98px) {
+  .landing-hero .hero-animation-img {
+    margin-bottom: -10rem;
+  }
+}
+.landing-hero .hero-animation-img .hero-dashboard-img {
+  width: 80%;
+  margin: 0 auto;
+  will-change: transform;
+  transform-style: preserve-3d;
+  transition: all 0.1s;
+}
+.landing-hero .hero-animation-img .hero-dashboard-img img {
+  width: 100%;
+}
+
+.landing-hero-blank {
+  padding-top: 26rem;
+}
+@media (max-width: 1199.98px) {
+  .landing-hero-blank {
+    padding-top: 15rem;
+  }
+}
+@media (max-width: 575.98px) {
+  .landing-hero-blank {
+    padding-top: 7rem;
+  }
+}
+
+@keyframes shine {
+  0% {
+    background-position: 0% 50%;
+  }
+  80% {
+    background-position: 50% 90%;
+  }
+  100% {
+    background-position: 91% 100%;
+  }
+}
+.landing-features .features-icon-wrapper .features-icon-box .features-icon-description {
+  max-width: 19.25rem;
+  margin: 0 auto;
+}
+
+.landing-reviews {
+  border-top-left-radius: 3.75rem;
+  border-top-right-radius: 3.75rem;
+}
+.landing-reviews .landing-reviews-btns .reviews-btn {
+  padding: 0.45rem;
+}
+.landing-reviews .swiper-reviews-carousel .swiper-button-prev,
+.landing-reviews .swiper-reviews-carousel .swiper-button-next {
+  display: none;
+}
+.landing-reviews .swiper-reviews-carousel .swiper-slide {
+  height: auto;
+}
+.landing-reviews .swiper-reviews-carousel .client-logo {
+  height: 1.375rem;
+  object-fit: contain;
+}
+.landing-reviews .swiper-logo-carousel .swiper {
+  max-width: 45rem;
+}
+.landing-reviews .swiper-logo-carousel .swiper .swiper-slide {
+  display: flex;
+  justify-content: center;
+}
+.landing-reviews .swiper-logo-carousel .swiper .client-logo {
+  max-height: 2.5rem;
+  max-width: 95%;
+  object-fit: contain;
+}
+
+.landing-team .card,
+.landing-team .card .team-image-box {
+  border-top-left-radius: 5.625rem;
+  border-top-right-radius: 1.25rem;
+}
+.landing-team .card .card-body {
+  border-bottom-left-radius: 0.375rem;
+  border-bottom-right-radius: 0.375rem;
+}
+.landing-team .team-image-box {
+  height: 11.5625rem;
+}
+.landing-team .team-image-box .card-img-position {
+  height: 15rem;
+  transform: translateX(-50%);
+}
+@media (max-width: 991.98px) {
+  .landing-team .team-image-box .card-img-position {
+    height: 13rem;
+  }
+}
+@media (max-width: 575.98px) {
+  .landing-team .team-image-box {
+    height: 11rem;
+  }
+}
+.landing-team .card .team-media-icons i {
+  transition: all 0.2s ease-in-out;
+}
+
+.landing-pricing {
+  border-radius: 3.75rem;
+}
+.landing-pricing .pricing-plans-item {
+  inset-inline-end: -60%;
+  bottom: 0;
+}
+@media (max-width: 767.98px) {
+  .landing-pricing .pricing-plans-item {
+    inset-inline-end: 0;
+    bottom: 1rem;
+  }
+}
+.landing-pricing .price-yearly-toggle {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.landing-pricing .card .card-header,
+.landing-pricing .card .card-body {
+  padding: 2rem;
+}
+
+.landing-faq {
+  border-top-left-radius: 3.75rem;
+  border-top-right-radius: 3.75rem;
+}
+.landing-faq .faq-image {
+  max-width: 20rem;
+  width: 80%;
+}
+
+.landing-cta {
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.landing-contact .text-heading {
+  overflow-wrap: anywhere;
+}
+.landing-contact .contact-img-box,
+.landing-contact .contact-img-box .contact-img {
+  border-radius: 3.75rem 0.375rem 0.375rem 0.375rem;
+}
+.landing-contact .contact-img-box::before {
+  content: url("../../../img/front-pages/icons/contact-border.png");
+  position: absolute;
+  inset-block-start: -2.5rem;
+  inset-inline-start: -2.8125rem;
+}
+@media (max-width: 767.98px) {
+  .landing-contact .contact-img-box::before {
+    display: none;
+  }
+}
+
+.light-style .landing-hero {
+  background: linear-gradient(138.18deg, #eae8fd 0%, #fce5e6 94.44%);
+}
+.light-style .landing-hero::after {
+  background-color: #fff;
+}
+.light-style .landing-cta {
+  background-image: url("../../../img/front-pages/backgrounds/cta-bg.png");
+}
+
+.dark-style .landing-hero {
+  background: #1e2130;
+}
+.dark-style .landing-hero::after {
+  background-color: #2f3349;
+}
+.dark-style .landing-hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 100%;
+  background: url("../../../img/front-pages/backgrounds/hero-bg-dark.png") center no-repeat;
+  background-size: contain;
+}
+.dark-style .landing-cta {
+  background-image: url("../../../img/front-pages/backgrounds/cta-bg-dark.png");
+}
+
+[dir=rtl] .landing-team .team-image-box .card-img-position {
+  transform: translateX(50%) !important;
+}
+[dir=rtl] .landing-pricing .switch .switch-label {
+  padding-right: 0;
+}
+[dir=rtl] .landing-pricing .switch .switch-label:first-child {
+  padding-left: 0.5rem;
+}
+[dir=rtl] .landing-pricing .switch .switch-input ~ .switch-label {
+  padding-right: 3rem;
+}
+[dir=rtl] .landing-contact .contact-img-box {
+  border-radius: 0.375rem 3.75rem 0.375rem 0.375rem;
+}
+[dir=rtl] .landing-contact .contact-img-box::before {
+  inset-block-start: -1.875rem;
+  inset-inline-start: -3.125rem;
+  transform: rotate(90deg);
+}

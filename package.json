@@ -8,12 +8,14 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "axios": "^0.27.2",
+    "axios": "^1.5.0",
     "core-js": "^3.8.3",
-    "element-plus": "^2.1.4",
-    "mitt": "^3.0.0",
+    "element-plus": "^2.3.14",
+    "moment": "^2.29.4",
+    "perfect-scrollbar": "^1.5.5",
     "vue": "^3.2.13",
-    "vue-router": "^4.0.3"
+    "vue-router": "^4.0.3",
+    "vuex": "^4.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",
@@ -21,13 +23,15 @@
     "@vue/cli-plugin-babel": "~5.0.0",
     "@vue/cli-plugin-eslint": "~5.0.0",
     "@vue/cli-plugin-router": "~5.0.0",
+    "@vue/cli-plugin-vuex": "~5.0.0",
     "@vue/cli-service": "~5.0.0",
+    "@vue/eslint-config-prettier": "^7.0.0",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-vue": "^8.0.3",
     "prettier": "^2.4.1",
-    "unplugin-auto-import": "^0.9.1",
-    "unplugin-vue-components": "^0.20.1"
+    "unplugin-auto-import": "^0.16.6",
+    "unplugin-vue-components": "^0.25.2"
   }
 }
