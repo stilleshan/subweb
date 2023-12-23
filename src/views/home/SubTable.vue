@@ -54,7 +54,7 @@
                       <input class="form-control" placeholder="Include: 可选" v-model="moreConfig.include" />
                     </div>
                     <div class="col-12 col-md-12">
-                      <input class="form-control" placeholder="Enclude: 可选" v-model="moreConfig.exclude" />
+                      <input class="form-control" placeholder="Exclude: 可选" v-model="moreConfig.exclude" />
                     </div>
                     <div class="col-md check-div" :style="{ display: 'flex', flexWrap: 'wrap' }">
                       <div class="form-check form-check-inline">
