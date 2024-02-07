@@ -12,7 +12,7 @@ else
 fi
 
 if [ $SHORT_URL ]; then
-  echo "当前短链接地址为: $API_URL"
+  echo "当前短链接地址为: $SHORT_URL"
   sed -i "s#https://s.ops.ci#$SHORT_URL#g" /usr/share/nginx/html/conf/config.js
 fi
 
