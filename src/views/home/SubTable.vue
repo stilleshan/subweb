@@ -132,6 +132,7 @@ export default {
       placeholder: '多订阅链接或节点请确保每行一条\n支持手动使用"|"分割多链接或节点',
       targetOptions: [
         { value: 'clash', text: 'Clash' },
+        { value: 'singbox',text:'Sing-box'},
         { value: 'clashr', text: 'ClashR' },
         { value: 'v2ray', text: 'V2Ray' },
         { value: 'quan', text: 'Quantumult' },
