@@ -145,6 +145,7 @@ export default {
         { value: 'ssd', text: 'SSD' },
         { value: 'ssr', text: 'SSR' },
         { value: 'loon', text: 'Loon' },
+        { value: 'singbox', text: 'Sing-box' },
       ],
       apiUrl: window.config.apiUrl,
       shortUrl: window.config.shortUrl,
